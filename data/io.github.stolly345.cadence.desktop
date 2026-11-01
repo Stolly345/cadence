@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Cadence
+GenericName=Task Scheduler
+Comment=Run backups, clean-ups and scripts automatically
+Exec=cadence
+Icon=io.github.stolly345.cadence
+Terminal=false
+Categories=Utility;System;GTK;
+Keywords=cron;schedule;backup;rsync;automation;script;cleanup;updates;
+StartupNotify=true

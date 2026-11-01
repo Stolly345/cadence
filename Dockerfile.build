@@ -1,0 +1,11 @@
+# Ubuntu 24.04 = oldest target (GTK 4.14, libadwaita 1.5, glibc 2.39): the .deb installs on
+# Ubuntu 24.04+ / Debian 13+, the .rpm on Fedora 40+ / openSUSE Tumbleweed.
+FROM ubuntu:24.04
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      curl ca-certificates build-essential pkg-config libgtk-4-dev libadwaita-1-dev dpkg-dev \
+ && rm -rf /var/lib/apt/lists/*
+ENV RUSTUP_HOME=/opt/rustup CARGO_HOME=/opt/cargo PATH=/opt/cargo/bin:$PATH
+RUN curl -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal \
+ && cargo install cargo-deb cargo-generate-rpm --locked && chmod -R a+rwX /opt/cargo /opt/rustup
+# for `cargo test`: the tests run the generated scripts, which call these
+RUN apt-get update && apt-get install -y --no-install-recommends rsync iproute2 procps git && rm -rf /var/lib/apt/lists/*

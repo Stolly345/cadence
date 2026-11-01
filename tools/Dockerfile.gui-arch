@@ -1,0 +1,5 @@
+# GUI harness on Arch: current GTK/libadwaita (newer than Ubuntu 24.04's)
+FROM archlinux:latest
+RUN pacman -Syu --noconfirm --needed gtk4 libadwaita xorg-server-xvfb xdotool imagemagick dbus \
+      cantarell-fonts adwaita-icon-theme rsync cronie libnotify >/dev/null 2>&1 && pacman -Scc --noconfirm >/dev/null
+RUN useradd -u 1000 -m tester

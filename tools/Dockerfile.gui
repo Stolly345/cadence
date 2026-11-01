@@ -1,0 +1,6 @@
+# GUI harness: the app under a virtual X display, driven by xdotool, captured with ImageMagick.
+FROM cadence-build
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      xvfb xdotool imagemagick dbus-x11 libnotify-bin fonts-cantarell adwaita-icon-theme \
+      libgtk-4-1 libadwaita-1-0 librsvg2-common \
+ && rm -rf /var/lib/apt/lists/*
